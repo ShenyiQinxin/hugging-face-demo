@@ -296,6 +296,7 @@ git rm --cached path/to/file
 │   └── test_app.py             # unit tests for predict()
 ├── k8s/
 │   ├── namespace.yaml
+│   ├── rbac.yaml                # ServiceAccount, Role, RoleBinding
 │   ├── deployment.yaml
 │   ├── service.yaml
 │   └── ingress.yaml

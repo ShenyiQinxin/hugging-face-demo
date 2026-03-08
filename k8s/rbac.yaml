@@ -1,0 +1,45 @@
+# RBAC for the hugging-face-demo pod
+# Principle of least privilege: dedicated SA with no k8s API access by default,
+# plus a Role scoped only to resources the app actually needs.
+
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: hf-demo
+  namespace: hf-demo
+automountServiceAccountToken: false   # pod gets no k8s API token unless explicitly needed
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: hf-demo
+  namespace: hf-demo
+rules:
+  # Read the HuggingFace API token secret (used for gated/private models)
+  - apiGroups: [""]
+    resources: ["secrets"]
+    resourceNames: ["hf-token"]      # scoped to this secret only, not all secrets
+    verbs: ["get"]
+
+  # Read model configuration (e.g. model name, inference params) from a ConfigMap
+  - apiGroups: [""]
+    resources: ["configmaps"]
+    resourceNames: ["hf-demo-config"] # scoped to this configmap only
+    verbs: ["get"]
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: hf-demo
+  namespace: hf-demo
+subjects:
+  - kind: ServiceAccount
+    name: hf-demo
+    namespace: hf-demo
+roleRef:
+  kind: Role
+  name: hf-demo
+  apiGroup: rbac.authorization.k8s.io

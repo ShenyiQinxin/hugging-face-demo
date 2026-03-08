@@ -16,12 +16,41 @@ spec:
       # If your GHCR package is PRIVATE, uncomment the next two lines
       # imagePullSecrets:
       #   - name: ghcr-cred
+
+      serviceAccountName: hf-demo          # use dedicated SA, not 'default'
+      automountServiceAccountToken: false  # no k8s API token mounted into the pod
+
+      # Pod-level: applies to all containers in the pod
+      securityContext:
+        runAsNonRoot: true          # reject any container that tries to run as root
+        runAsUser: 10001            # matches the 'app' user created in Dockerfile
+        runAsGroup: 10001
+        fsGroup: 10001              # files written to volumes are owned by this GID
+        seccompProfile:
+          type: RuntimeDefault      # enables the container runtime's default seccomp filter
+
       containers:
         - name: app
           image: ghcr.io/shenyiqinxin/hugging-face-demo:main  # will be updated by Actions to :$GITHUB_SHA
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080
+
+          # Container-level: overrides/extends pod-level securityContext
+          securityContext:
+            allowPrivilegeEscalation: false   # prevents sudo / setuid escalation
+            readOnlyRootFilesystem: true      # filesystem is immutable at runtime
+            capabilities:
+              drop:
+                - ALL                         # drop every Linux capability (NET_RAW, SYS_ADMIN, etc.)
+
+          # Gradio & HuggingFace need writable temp dirs even with readOnlyRootFilesystem
+          volumeMounts:
+            - name: tmp
+              mountPath: /tmp
+            - name: hf-cache
+              mountPath: /home/app/.cache/huggingface
+
           readinessProbe:
             httpGet: { path: "/", port: 8080 }
             initialDelaySeconds: 10
@@ -30,3 +59,9 @@ spec:
             httpGet: { path: "/", port: 8080 }
             initialDelaySeconds: 30
             periodSeconds: 20
+
+      volumes:
+        - name: tmp
+          emptyDir: {}              # writable scratch space, wiped on pod restart
+        - name: hf-cache
+          emptyDir: {}              # model cache, wiped on pod restart (re-downloaded on start)

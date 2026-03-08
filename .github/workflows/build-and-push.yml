@@ -9,9 +9,10 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest # runs on the latest Ubuntu VM
-    permissions: # Grant the job 
+    permissions: # Grant the job
       contents: read # read access for checkout
       packages: write # write access to GHCR
+      security-events: write # upload Trivy SARIF to GitHub Security tab
 
     env:
       IMAGE: ghcr.io/${{ github.repository }} # e.g. ghcr.io/shenyiqinxin/hugging-face-demo
@@ -89,14 +90,41 @@ jobs:
           echo "Published image_ref='${IMAGE_REF}'"
 
   # =========================
+  # TRIVY IMAGE SCAN
+  # Runs after build; blocks deploy on CRITICAL/HIGH CVEs
+  # =========================
+  scan:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      security-events: write # upload SARIF to GitHub Security tab
+
+    steps:
+      - name: Run Trivy vulnerability scan
+        uses: aquasecurity/trivy-action@0.28.0
+        with:
+          image-ref: ${{ needs.build.outputs.image_ref }}
+          format: sarif
+          output: trivy-results.sarif
+          severity: CRITICAL,HIGH
+          exit-code: '1'        # fail the job if any CRITICAL/HIGH found
+          ignore-unfixed: true  # skip CVEs with no fix yet
+
+      - name: Upload Trivy SARIF to GitHub Security tab
+        if: always()            # upload even when the scan step fails
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: trivy-results.sarif
+
+  # =========================
   # OPTION A: SELF-HOSTED RUNNER (deploys to your local cluster)
   # - Run a self-hosted runner on your Mac (where Rancher Desktop/minikube/k3d runs)
   # - No kubeconfig secret needed; it uses your local ~/.kube/config and network
   # =========================
   deploy-selfhosted:
-    # set to needs.build.result == 'success' if you want stricter gating
-    if: ${{ needs.build.result == 'success' }} 
-    needs: build # runs after build job
+    if: ${{ needs.build.result == 'success' && needs.scan.result == 'success' }}
+    needs: [build, scan] # deploy only if build AND scan passed
     runs-on: [self-hosted, macOS, X64, local-k8s]   #  you set on your runner
     environment: dev
     timeout-minutes: 10

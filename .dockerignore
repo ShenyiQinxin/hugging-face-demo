@@ -10,3 +10,6 @@ notebooks/
 README.md
 .token
 .vscode/
+tests/
+pytest.ini
+TESTING.md

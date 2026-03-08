@@ -20,6 +20,7 @@ license: cc
 ![Docker](https://img.shields.io/badge/Docker-ready-blue?logo=docker)
 ![Kubernetes](https://img.shields.io/badge/Kubernetes-deployable-326CE5?logo=kubernetes)
 ![Gradio](https://img.shields.io/badge/Gradio-UI-green?logo=python)
+![Trivy](https://img.shields.io/badge/Trivy-image--scan-blue?logo=aquasecurity)
 
 A minimal **text summarization demo** using Hugging Face 🤗 `transformers` + Gradio. Runs locally, in Docker, or on Kubernetes.
 
@@ -30,6 +31,7 @@ A minimal **text summarization demo** using Hugging Face 🤗 `transformers` + G
 - Containerized, non-root runtime.
 - Probes & manifests ready for Kubernetes.
 - **Multi-arch image** (linux/amd64 + linux/arm64) for Apple Silicon & x86.
+- **Trivy image scan** in CI — blocks deploy on CRITICAL/HIGH CVEs, results in GitHub Security tab.
 
 ---
 
@@ -249,6 +251,31 @@ kubectl delete ns hf-demo
 ```
 ---
 
+## 🔒 CI Security Scan (Trivy)
+
+Every push to `main` runs a Trivy image scan **before** deploying:
+
+```
+build → scan → deploy-selfhosted
+```
+
+- Scans the pushed image by immutable digest (`image@sha256:...`)
+- Fails CI on any **CRITICAL** or **HIGH** CVE with an available fix
+- Unfixed CVEs are skipped (`ignore-unfixed: true`) to reduce noise
+- Results are always uploaded to the **GitHub Security tab** (repo → Security → Code scanning)
+
+To view findings locally:
+
+```sh
+# Install Trivy
+brew install aquasecurity/trivy/trivy
+
+# Scan the GHCR image
+trivy image --severity CRITICAL,HIGH --ignore-unfixed \
+  ghcr.io/shenyiqinxin/hugging-face-demo:main
+```
+
+---
 
 ## 💜 Git Issues
 ```
@@ -263,11 +290,19 @@ git rm --cached path/to/file
 ├── app.py
 ├── requirements.txt
 ├── Dockerfile
+├── TESTING.md
+├── tests/
+│   ├── conftest.py              # stubs transformers/gradio/torch
+│   └── test_app.py             # unit tests for predict()
 ├── k8s/
 │   ├── namespace.yaml
 │   ├── deployment.yaml
 │   ├── service.yaml
 │   └── ingress.yaml
+├── .github/
+│   └── workflows/
+│       ├── build-and-push.yml   # build → trivy scan → deploy
+│       └── main.yml             # sync to Hugging Face Spaces
 └── flagged/
 
 ```

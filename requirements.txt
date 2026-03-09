@@ -1,4 +1,4 @@
 gradio==4.44.1
-transformers==4.33.2
+transformers==4.48.0
 torch==2.5.1
 pytest>=8.0

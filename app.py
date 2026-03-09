@@ -23,5 +23,4 @@ gr.Interface(
     fn=predict,
     inputs=gr.Textbox(lines=8, label="Text"),
     outputs=gr.Textbox(label="Summary"),
-    allow_flagging="never"
 ).launch()

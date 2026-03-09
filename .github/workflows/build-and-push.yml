@@ -179,7 +179,7 @@ jobs:
           [ -n "$IMG" ] || { echo "IMG is empty"; exit 1; }
           kubectl -n hf-demo set image deploy/hugging-face-demo app="$IMG"
           kubectl -n hf-demo get pods -n hf-demo
-          kubectl -n hf-demo rollout status deploy/hugging-face-demo --timeout=5m || {
+          kubectl -n hf-demo rollout status deploy/hugging-face-demo --timeout=10m || {
             echo "Rollout taking long; showing describe/logs..."
             kubectl -n hf-demo describe deploy/hugging-face-demo || true
             kubectl -n hf-demo logs deploy/hugging-face-demo --since=10m || true

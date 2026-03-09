@@ -191,14 +191,88 @@ Manifests are in `k8s/`.
 Deploy:
 
 ```sh
-# Locally we set DNS by putting hf-demo.local → 127.0.0.1 in /etc/hosts.
-127.0.0.1   hf-demo.local
+# 1. Add DNS entry
+echo "127.0.0.1   hf-demo.local" | sudo tee -a /etc/hosts
 
-kubectl apply -f k8s/namespace.yaml 
+# 2. Apply manifests
+kubectl apply -f k8s/namespace.yaml
 kubectl -n hf-demo apply -f k8s/
 kubectl -n hf-demo rollout status deploy/hugging-face-demo
-open http://hf-demo.local/
 ```
+
+### Traefik Ingress Controller (kind clusters)
+
+kind clusters ship without an ingress controller. Install Traefik manually:
+
+```sh
+# CRDs + RBAC
+kubectl apply -f https://raw.githubusercontent.com/traefik/traefik/v2.11/docs/content/reference/dynamic-configuration/kubernetes-crd-definition-v1.yml
+kubectl apply -f https://raw.githubusercontent.com/traefik/traefik/v2.11/docs/content/reference/dynamic-configuration/kubernetes-crd-rbac.yml
+
+# Fix RBAC to point at the traefik namespace
+kubectl patch clusterrolebinding traefik-ingress-controller --type=json \
+  -p='[{"op":"replace","path":"/subjects/0/namespace","value":"traefik"}]'
+
+# Traefik namespace + ServiceAccount
+kubectl create namespace traefik
+kubectl create serviceaccount traefik-ingress-controller -n traefik
+
+# IngressClass
+kubectl apply -f - <<EOF
+apiVersion: networking.k8s.io/v1
+kind: IngressClass
+metadata:
+  name: traefik
+spec:
+  controller: traefik.io/ingress-controller
+EOF
+
+# Traefik Deployment + Service
+kubectl apply -f - <<EOF
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: traefik
+  namespace: traefik
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: traefik
+  template:
+    metadata:
+      labels:
+        app: traefik
+    spec:
+      serviceAccountName: traefik-ingress-controller
+      containers:
+        - name: traefik
+          image: traefik:v2.11
+          args:
+            - --providers.kubernetesingress
+            - --providers.kubernetesingress.ingressclass=traefik
+            - --entrypoints.web.address=:80
+          ports:
+            - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: traefik
+  namespace: traefik
+spec:
+  selector:
+    app: traefik
+  ports:
+    - port: 80
+      targetPort: 80
+EOF
+
+# Port-forward Traefik to localhost (port 80 requires root, use 8888)
+kubectl -n traefik port-forward svc/traefik 8888:80 &
+```
+
+Access the app at `http://hf-demo.local:8888`
 
 
 - Debugging:

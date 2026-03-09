@@ -1,3 +1,4 @@
+import os
 from transformers import pipeline
 import gradio as gr
 
@@ -23,4 +24,4 @@ gr.Interface(
     fn=predict,
     inputs=gr.Textbox(lines=8, label="Text"),
     outputs=gr.Textbox(label="Summary"),
-).launch()
+).launch(root_path=os.environ.get("GRADIO_ROOT_PATH", ""))

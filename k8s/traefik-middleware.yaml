@@ -1,0 +1,11 @@
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: rewrite-host-for-gradio
+  namespace: hf-demo
+spec:
+  headers:
+    customRequestHeaders:
+      Host: "localhost:8080"
+      X-Forwarded-Host: "localhost:8080"
+      X-Forwarded-Port: "8080"

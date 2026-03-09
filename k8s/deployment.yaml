@@ -35,6 +35,9 @@ spec:
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080
+          env:
+            - name: GRADIO_ROOT_PATH
+              value: "http://hf-demo.local:8888"   # public URL seen by browser; empty on HF Spaces
 
           # Container-level: overrides/extends pod-level securityContext
           securityContext:

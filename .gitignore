@@ -1,4 +1,37 @@
+# virtual envs & runners
 .venv*/
-.vscode/
-.token
 actions-runner/
+
+# IDE
+.vscode/
+
+# secrets / tokens
+.token
+*.env
+.env*
+
+# macOS
+.DS_Store
+._*
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+
+# ML model weights
+*.safetensors
+*.bin
+*.pt
+*.ckpt
+
+# Gradio flagged data
+flagged/
+
+# logs
+*.log
+*.gif

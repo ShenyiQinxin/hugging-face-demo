@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="1020" viewBox="0 0 960 1020">
+  <defs>
+    <linearGradient id="hg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#38d4f5"/>
+      <stop offset="100%" stop-color="#f5c842"/>
+    </linearGradient>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0a1628"/>
+      <stop offset="100%" stop-color="#0d1f3c"/>
+    </linearGradient>
+    <linearGradient id="redCard" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1e1530"/>
+      <stop offset="100%" stop-color="#141830"/>
+    </linearGradient>
+    <linearGradient id="cyanCard" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0e2030"/>
+      <stop offset="100%" stop-color="#0d1a2e"/>
+    </linearGradient>
+    <linearGradient id="redBtn" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ff6b6b"/>
+      <stop offset="100%" stop-color="#c0392b"/>
+    </linearGradient>
+    <linearGradient id="cyanBtn" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#38d4f5"/>
+      <stop offset="100%" stop-color="#0a9abf"/>
+    </linearGradient>
+    <linearGradient id="yellowBtn" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f5c842"/>
+      <stop offset="100%" stop-color="#d4a017"/>
+    </linearGradient>
+    <filter id="glow-red">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glow-cyan">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Rich background -->
+  <rect width="960" height="1020" fill="url(#bgGrad)" rx="20"/>
+  <!-- Subtle noise dots -->
+  <pattern id="dots" x="0" y="0" width="30" height="30" patternUnits="userSpaceOnUse">
+    <circle cx="1" cy="1" r="0.9" fill="#ffffff" opacity="0.035"/>
+  </pattern>
+  <rect width="960" height="1020" fill="url(#dots)"/>
+  <!-- Glow orbs in background -->
+  <circle cx="200" cy="300" r="180" fill="#e05252" opacity="0.04"/>
+  <circle cx="760" cy="350" r="180" fill="#38d4f5" opacity="0.04"/>
+
+  <!-- ===== HEADER ===== -->
+  <rect x="36" y="32" width="7" height="68" rx="3.5" fill="url(#hg)"/>
+  <text x="56" y="62" font-family="Arial Black, Arial, sans-serif" font-size="30" font-weight="900" fill="#ffffff">How</text>
+  <rect x="110" y="34" width="98" height="36" rx="7" fill="url(#yellowBtn)"/>
+  <text x="159" y="59" font-family="Arial Black, Arial, sans-serif" font-size="26" font-weight="900" fill="#0a1628" text-anchor="middle">CI/CD</text>
+  <text x="216" y="62" font-family="Arial Black, Arial, sans-serif" font-size="30" font-weight="900" fill="#ffffff"> Works</text>
+  <text x="56" y="88" font-family="Arial, sans-serif" font-size="10.5" fill="#3d5070" letter-spacing="2">BART  ·  GRADIO  ·  DOCKER  ·  GHCR  ·  KUBERNETES  ·  GITHUB ACTIONS</text>
+
+  <!-- ===== TRIGGER ===== -->
+  <rect x="36" y="108" width="888" height="70" rx="14" fill="#f5c84210" stroke="#f5c842" stroke-width="2.5"/>
+  <!-- Git branch icon (hand-drawn style) -->
+  <rect x="52" y="120" width="42" height="42" rx="12" fill="url(#yellowBtn)"/>
+  <circle cx="63" cy="131" r="4.5" fill="#0a1628"/>
+  <circle cx="81" cy="131" r="4.5" fill="#0a1628"/>
+  <circle cx="72" cy="153" r="4.5" fill="#0a1628"/>
+  <line x1="63" y1="135.5" x2="63" y2="149" stroke="#0a1628" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="63" y1="149" x2="72" y2="149" stroke="#0a1628" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="81" y1="135.5" x2="81" y2="142" stroke="#0a1628" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M81 142 Q81 149 72 149" fill="none" stroke="#0a1628" stroke-width="2.5"/>
+  <text x="106" y="137" font-family="Arial Black, Arial, sans-serif" font-size="16" font-weight="900" fill="#f5c842">git push origin main</text>
+  <text x="106" y="158" font-family="Arial, sans-serif" font-size="11" fill="#5a6a8a">developer commits  ·  triggers both workflows simultaneously</text>
+  <rect x="824" y="126" width="84" height="28" rx="7" fill="url(#yellowBtn)"/>
+  <text x="866" y="144" font-family="Arial Black, Arial, sans-serif" font-size="10" font-weight="900" fill="#0a1628" text-anchor="middle" letter-spacing="1.5">TRIGGER</text>
+
+  <!-- Fork lines -->
+  <line x1="480" y1="178" x2="480" y2="202" stroke="#f5c842" stroke-width="2.5"/>
+  <line x1="240" y1="202" x2="720" y2="202" stroke="#3d5070" stroke-width="1.5" stroke-dasharray="6,4"/>
+  <circle cx="480" cy="202" r="6" fill="#f5c842"/>
+  <line x1="240" y1="202" x2="240" y2="222" stroke="#ff6b6b" stroke-width="2.5"/>
+  <line x1="720" y1="202" x2="720" y2="222" stroke="#38d4f5" stroke-width="2.5"/>
+  <text x="310" y="198" font-family="Arial, sans-serif" font-size="9" fill="#3d5070">build-and-push.yml</text>
+  <text x="590" y="198" font-family="Arial, sans-serif" font-size="9" fill="#3d5070">main.yml</text>
+
+  <!-- ===== LEFT CARD ===== -->
+  <rect x="36" y="222" width="422" height="282" rx="16" fill="url(#redCard)" stroke="#e05252" stroke-width="2.5"/>
+  <!-- Glowing top edge -->
+  <rect x="36" y="222" width="422" height="58" rx="16" fill="#e0525225"/>
+  <rect x="36" y="258" width="422" height="22" fill="#e0525225"/>
+
+  <!-- Gear icon -->
+  <rect x="52" y="232" width="40" height="40" rx="11" fill="url(#redBtn)"/>
+  <circle cx="72" cy="252" r="8" fill="none" stroke="#fff" stroke-width="2.2"/>
+  <circle cx="72" cy="252" r="3.5" fill="#fff"/>
+  <line x1="72" y1="240" x2="72" y2="244" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="72" y1="260" x2="72" y2="264" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="60" y1="252" x2="64" y2="252" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="80" y1="252" x2="84" y2="252" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="63.5" y1="243.5" x2="66.4" y2="246.4" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+  <line x1="77.6" y1="257.6" x2="80.5" y2="260.5" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+
+  <text x="102" y="245" font-family="Arial Black, Arial, sans-serif" font-size="13.5" font-weight="900" fill="#ff8080">build-and-push.yml</text>
+  <text x="102" y="263" font-family="Arial, sans-serif" font-size="10" fill="#5a6a8a">GitHub cloud VM  +  Mac self-hosted runner</text>
+
+  <!-- Step 1 -->
+  <rect x="50" y="290" width="394" height="48" rx="10" fill="#0a1628" stroke="#1e3a5a" stroke-width="1.2"/>
+  <rect x="60" y="302" width="26" height="26" rx="7" fill="#e0525235"/>
+  <text x="73" y="319" font-family="Arial Black, Arial, sans-serif" font-size="11" font-weight="900" fill="#ff6b6b" text-anchor="middle">1</text>
+  <!-- Docker icon: whale shape -->
+  <rect x="96" y="296" width="22" height="22" rx="6" fill="#e0525230"/>
+  <rect x="100" y="303" width="4" height="3" rx="1" fill="#ff8080"/>
+  <rect x="105" y="301" width="4" height="5" rx="1" fill="#ff8080"/>
+  <rect x="110" y="303" width="4" height="3" rx="1" fill="#ff8080"/>
+  <path d="M99 306 Q107 312 115 306" fill="none" stroke="#ff8080" stroke-width="1.5"/>
+  <text x="124" y="305" font-family="Arial Black, Arial, sans-serif" font-size="11.5" font-weight="900" fill="#e8eef8">Build multi-arch Docker image</text>
+  <text x="124" y="321" font-family="Arial, sans-serif" font-size="9.5" fill="#4a5a78">amd64 and arm64 platforms</text>
+  <rect x="346" y="302" width="88" height="20" rx="5" fill="#3de89b18" stroke="#3de89b60" stroke-width="1.2"/>
+  <text x="390" y="315" font-family="Arial Black, Arial, sans-serif" font-size="8.5" fill="#3de89b" text-anchor="middle" font-weight="900">amd64+arm64</text>
+
+  <!-- Step 2 -->
+  <rect x="50" y="344" width="394" height="48" rx="10" fill="#0a1628" stroke="#1e3a5a" stroke-width="1.2"/>
+  <rect x="60" y="356" width="26" height="26" rx="7" fill="#e0525235"/>
+  <text x="73" y="373" font-family="Arial Black, Arial, sans-serif" font-size="11" font-weight="900" fill="#ff6b6b" text-anchor="middle">2</text>
+  <!-- Box/package icon -->
+  <rect x="96" y="350" width="22" height="22" rx="6" fill="#e0525230"/>
+  <rect x="101" y="356" width="12" height="10" rx="2" fill="none" stroke="#ff8080" stroke-width="1.5"/>
+  <line x1="101" y1="360" x2="113" y2="360" stroke="#ff8080" stroke-width="1.5"/>
+  <line x1="107" y1="356" x2="107" y2="360" stroke="#ff8080" stroke-width="1.5"/>
+  <text x="124" y="359" font-family="Arial Black, Arial, sans-serif" font-size="11.5" font-weight="900" fill="#e8eef8">Push image to GHCR</text>
+  <text x="124" y="375" font-family="Arial, sans-serif" font-size="9.5" fill="#4a5a78">ghcr.io/macolulu/app:sha</text>
+  <rect x="382" y="356" width="52" height="20" rx="5" fill="#e0525218" stroke="#e0525270" stroke-width="1.2"/>
+  <text x="408" y="369" font-family="Arial Black, Arial, sans-serif" font-size="8.5" fill="#ff8080" text-anchor="middle" font-weight="900">GHCR</text>
+
+  <!-- Step 3 -->
+  <rect x="50" y="398" width="394" height="48" rx="10" fill="#0a1628" stroke="#1e3a5a" stroke-width="1.2"/>
+  <rect x="60" y="410" width="26" height="26" rx="7" fill="#e0525235"/>
+  <text x="73" y="427" font-family="Arial Black, Arial, sans-serif" font-size="11" font-weight="900" fill="#ff6b6b" text-anchor="middle">3</text>
+  <!-- Shield icon -->
+  <rect x="96" y="404" width="22" height="22" rx="6" fill="#b57bff25"/>
+  <path d="M107 407 L102 410 L102 416 Q102 421 107 423 Q112 421 112 416 L112 410 Z" fill="none" stroke="#b57bff" stroke-width="1.8"/>
+  <text x="107" y="419" font-family="Arial Black, Arial, sans-serif" font-size="8" fill="#b57bff" text-anchor="middle" font-weight="900">!</text>
+  <text x="124" y="413" font-family="Arial Black, Arial, sans-serif" font-size="11.5" font-weight="900" fill="#e8eef8">Trivy CVE Scan</text>
+  <text x="124" y="429" font-family="Arial, sans-serif" font-size="9.5" fill="#4a5a78">Catches CRITICAL/HIGH vulns before deploy</text>
+  <rect x="358" y="410" width="76" height="20" rx="5" fill="#b57bff18" stroke="#b57bff60" stroke-width="1.2"/>
+  <text x="396" y="423" font-family="Arial Black, Arial, sans-serif" font-size="8.5" fill="#b57bff" text-anchor="middle" font-weight="900">SECURITY</text>
+
+  <!-- Step 4 -->
+  <rect x="50" y="452" width="394" height="48" rx="10" fill="#0a1628" stroke="#1e3a5a" stroke-width="1.2"/>
+  <rect x="60" y="464" width="26" height="26" rx="7" fill="#e0525235"/>
+  <text x="73" y="481" font-family="Arial Black, Arial, sans-serif" font-size="11" font-weight="900" fill="#ff6b6b" text-anchor="middle">4</text>
+  <!-- Terminal icon -->
+  <rect x="96" y="458" width="22" height="22" rx="6" fill="#e0525230"/>
+  <rect x="100" y="462" width="14" height="10" rx="2" fill="none" stroke="#ff8080" stroke-width="1.5"/>
+  <polyline points="103,466 106,469 103,472" fill="none" stroke="#ff8080" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <line x1="108" y1="472" x2="113" y2="472" stroke="#ff8080" stroke-width="1.5" stroke-linecap="round"/>
+  <text x="124" y="467" font-family="Arial Black, Arial, sans-serif" font-size="11.5" font-weight="900" fill="#e8eef8">deploy-selfhosted  Mac runner</text>
+  <text x="124" y="483" font-family="Arial, sans-serif" font-size="9.5" fill="#4a5a78">kubectl apply -f k8s/</text>
+  <rect x="366" y="464" width="68" height="20" rx="5" fill="#e0525218" stroke="#e0525270" stroke-width="1.2"/>
+  <text x="400" y="477" font-family="Arial Black, Arial, sans-serif" font-size="8.5" fill="#ff8080" text-anchor="middle" font-weight="900">kubectl</text>
+
+  <!-- Arrow left -->
+  <line x1="247" y1="504" x2="247" y2="532" stroke="#e05252" stroke-width="2.5"/>
+  <text x="247" y="523" font-family="Arial, sans-serif" font-size="8.5" fill="#3d5070" text-anchor="middle">kubectl apply</text>
+  <polygon points="240,530 247,542 254,530" fill="#e05252"/>
+
+  <!-- ===== LEFT TARGET ===== -->
+  <rect x="36" y="544" width="422" height="184" rx="16" fill="url(#redCard)" stroke="#e05252" stroke-width="2.5"/>
+  <rect x="36" y="544" width="422" height="48" rx="16" fill="#e0525225"/>
+  <rect x="36" y="570" width="422" height="22" fill="#e0525225"/>
+  <!-- K8s icon -->
+  <rect x="52" y="554" width="36" height="36" rx="10" fill="url(#redBtn)"/>
+  <circle cx="70" cy="572" r="9" fill="none" stroke="#fff" stroke-width="2"/>
+  <circle cx="70" cy="572" r="3.5" fill="#fff"/>
+  <line x1="70" y1="561" x2="70" y2="565" stroke="#fff" stroke-width="2.5"/>
+  <line x1="70" y1="579" x2="70" y2="583" stroke="#fff" stroke-width="2.5"/>
+  <line x1="59" y1="572" x2="63" y2="572" stroke="#fff" stroke-width="2.5"/>
+  <line x1="77" y1="572" x2="81" y2="572" stroke="#fff" stroke-width="2.5"/>
+  <line x1="62.2" y1="564.2" x2="65" y2="567" stroke="#fff" stroke-width="2"/>
+  <line x1="75" y1="577" x2="77.8" y2="579.8" stroke="#fff" stroke-width="2"/>
+  <text x="98" y="567" font-family="Arial Black, Arial, sans-serif" font-size="13.5" font-weight="900" fill="#ff8080">Local Kubernetes Cluster</text>
+  <text x="98" y="583" font-family="Arial, sans-serif" font-size="10" fill="#5a6a8a">Colima ml + kind</text>
+  <circle cx="54" cy="607" r="5" fill="#e05252"/>
+  <text x="66" y="611" font-family="Arial, sans-serif" font-size="10.5" fill="#e8eef8">namespace: hf-demo  ·  ServiceAccount + RBAC</text>
+  <circle cx="54" cy="630" r="5" fill="#e05252"/>
+  <text x="66" y="634" font-family="Arial, sans-serif" font-size="10.5" fill="#e8eef8">Deployment  -  Pod running Gradio app</text>
+  <circle cx="54" cy="653" r="5" fill="#e05252"/>
+  <text x="66" y="657" font-family="Arial, sans-serif" font-size="10.5" fill="#e8eef8">Service  +  Ingress (Traefik)</text>
+  <!-- URL chip with lock -->
+  <rect x="50" y="668" width="180" height="28" rx="8" fill="#e0525218" stroke="#e0525260" stroke-width="1.5"/>
+  <path d="M64 678 L64 675 Q64 670 69 670 Q74 670 74 675 L74 678 Z" fill="none" stroke="#ff8080" stroke-width="1.8"/>
+  <rect x="63" y="678" width="12" height="9" rx="2.5" fill="#ff8080"/>
+  <text x="140" y="686" font-family="Arial Black, Arial, sans-serif" font-size="9" fill="#ff8080" text-anchor="middle" font-weight="900">http://hf-demo.local</text>
+
+  <!-- ===== RIGHT CARD ===== -->
+  <rect x="502" y="222" width="422" height="282" rx="16" fill="url(#cyanCard)" stroke="#38d4f5" stroke-width="2.5"/>
+  <rect x="502" y="222" width="422" height="58" rx="16" fill="#38d4f520"/>
+  <rect x="502" y="258" width="422" height="22" fill="#38d4f520"/>
+
+  <!-- HF branded icon -->
+  <rect x="518" y="232" width="40" height="40" rx="11" fill="url(#cyanBtn)"/>
+  <text x="538" y="258" font-family="Arial Black, Arial, sans-serif" font-size="20" font-weight="900" fill="#ffffff" text-anchor="middle">H</text>
+
+  <text x="568" y="245" font-family="Arial Black, Arial, sans-serif" font-size="13.5" font-weight="900" fill="#38d4f5">main.yml</text>
+  <text x="568" y="263" font-family="Arial, sans-serif" font-size="10" fill="#5a6a8a">GitHub cloud VM only</text>
+
+  <!-- Step 1 -->
+  <rect x="516" y="290" width="394" height="48" rx="10" fill="#0a1628" stroke="#1e3a5a" stroke-width="1.2"/>
+  <rect x="526" y="302" width="26" height="26" rx="7" fill="#38d4f530"/>
+  <circle cx="539" cy="315" r="5" fill="#38d4f5"/>
+  <!-- Upload arrow icon -->
+  <rect x="562" y="296" width="22" height="22" rx="6" fill="#38d4f520"/>
+  <line x1="573" y1="313" x2="573" y2="302" stroke="#38d4f5" stroke-width="2" stroke-linecap="round"/>
+  <polyline points="568,306 573,300 578,306" fill="none" stroke="#38d4f5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <line x1="568" y1="314" x2="578" y2="314" stroke="#38d4f5" stroke-width="1.5" stroke-linecap="round"/>
+  <text x="592" y="305" font-family="Arial Black, Arial, sans-serif" font-size="11.5" font-weight="900" fill="#e8eef8">git push --force to HF Spaces repo</text>
+  <text x="592" y="321" font-family="Arial, sans-serif" font-size="9.5" fill="#4a5a78">Force-sync: HF has its own commit history</text>
+  <rect x="808" y="302" width="58" height="20" rx="5" fill="#38d4f518" stroke="#38d4f560" stroke-width="1.2"/>
+  <text x="837" y="315" font-family="Arial Black, Arial, sans-serif" font-size="8.5" fill="#38d4f5" text-anchor="middle" font-weight="900">HF API</text>
+
+  <!-- Step 2 -->
+  <rect x="516" y="344" width="394" height="48" rx="10" fill="#0a1628" stroke="#1e3a5a" stroke-width="1.2"/>
+  <rect x="526" y="356" width="26" height="26" rx="7" fill="#38d4f530"/>
+  <circle cx="539" cy="369" r="5" fill="#38d4f5"/>
+  <!-- Eye icon -->
+  <rect x="562" y="350" width="22" height="22" rx="6" fill="#38d4f520"/>
+  <path d="M566 361 Q573 354 580 361 Q573 368 566 361 Z" fill="none" stroke="#38d4f5" stroke-width="1.5"/>
+  <circle cx="573" cy="361" r="3" fill="#38d4f5"/>
+  <text x="592" y="359" font-family="Arial Black, Arial, sans-serif" font-size="11.5" font-weight="900" fill="#e8eef8">HF Spaces detects code change</text>
+  <text x="592" y="375" font-family="Arial, sans-serif" font-size="9.5" fill="#4a5a78">Triggers its own independent build pipeline</text>
+  <rect x="812" y="356" width="54" height="20" rx="5" fill="#38d4f518" stroke="#38d4f560" stroke-width="1.2"/>
+  <text x="839" y="369" font-family="Arial Black, Arial, sans-serif" font-size="8.5" fill="#38d4f5" text-anchor="middle" font-weight="900">AUTO</text>
+
+  <!-- Step 3 -->
+  <rect x="516" y="398" width="394" height="48" rx="10" fill="#0a1628" stroke="#1e3a5a" stroke-width="1.2"/>
+  <rect x="526" y="410" width="26" height="26" rx="7" fill="#38d4f530"/>
+  <circle cx="539" cy="423" r="5" fill="#38d4f5"/>
+  <!-- Layers icon -->
+  <rect x="562" y="404" width="22" height="22" rx="6" fill="#38d4f520"/>
+  <rect x="566" y="408" width="14" height="4" rx="1.5" fill="none" stroke="#38d4f5" stroke-width="1.5"/>
+  <rect x="566" y="414" width="14" height="4" rx="1.5" fill="none" stroke="#38d4f5" stroke-width="1.5"/>
+  <rect x="566" y="420" width="14" height="4" rx="1.5" fill="none" stroke="#38d4f5" stroke-width="1.5"/>
+  <text x="592" y="413" font-family="Arial Black, Arial, sans-serif" font-size="11.5" font-weight="900" fill="#e8eef8">HF builds its own Docker image</text>
+  <text x="592" y="429" font-family="Arial, sans-serif" font-size="9.5" fill="#4a5a78">From source  -  does NOT use your GHCR image</text>
+  <rect x="808" y="410" width="58" height="20" rx="5" fill="#38d4f518" stroke="#38d4f560" stroke-width="1.2"/>
+  <text x="837" y="423" font-family="Arial Black, Arial, sans-serif" font-size="8.5" fill="#38d4f5" text-anchor="middle" font-weight="900">PUBLIC</text>
+
+  <!-- Step 4 -->
+  <rect x="516" y="452" width="394" height="48" rx="10" fill="#0a1628" stroke="#1e3a5a" stroke-width="1.2"/>
+  <rect x="526" y="464" width="26" height="26" rx="7" fill="#38d4f530"/>
+  <circle cx="539" cy="477" r="5" fill="#38d4f5"/>
+  <!-- Globe icon -->
+  <rect x="562" y="458" width="22" height="22" rx="6" fill="#38d4f520"/>
+  <circle cx="573" cy="469" r="8" fill="none" stroke="#38d4f5" stroke-width="1.5"/>
+  <line x1="565" y1="469" x2="581" y2="469" stroke="#38d4f5" stroke-width="1.2"/>
+  <path d="M570 461 Q573 465 573 469 Q573 473 570 477" fill="none" stroke="#38d4f5" stroke-width="1.2"/>
+  <path d="M576 461 Q579 465 579 469 Q579 473 576 477" fill="none" stroke="#38d4f5" stroke-width="1.2"/>
+  <text x="592" y="467" font-family="Arial Black, Arial, sans-serif" font-size="11.5" font-weight="900" fill="#e8eef8">Gradio app live  -  zero ops</text>
+  <text x="592" y="483" font-family="Arial, sans-serif" font-size="9.5" fill="#4a5a78">Fully managed by HF infrastructure</text>
+  <rect x="812" y="464" width="54" height="20" rx="5" fill="#38d4f518" stroke="#38d4f560" stroke-width="1.2"/>
+  <text x="839" y="477" font-family="Arial Black, Arial, sans-serif" font-size="8.5" fill="#38d4f5" text-anchor="middle" font-weight="900">DEMO</text>
+
+  <!-- Arrow right -->
+  <line x1="713" y1="504" x2="713" y2="532" stroke="#38d4f5" stroke-width="2.5"/>
+  <text x="713" y="523" font-family="Arial, sans-serif" font-size="8.5" fill="#3d5070" text-anchor="middle">HF auto-build</text>
+  <polygon points="706,530 713,542 720,530" fill="#38d4f5"/>
+
+  <!-- ===== RIGHT TARGET ===== -->
+  <rect x="502" y="544" width="422" height="184" rx="16" fill="url(#cyanCard)" stroke="#38d4f5" stroke-width="2.5"/>
+  <rect x="502" y="544" width="422" height="48" rx="16" fill="#38d4f520"/>
+  <rect x="502" y="570" width="422" height="22" fill="#38d4f520"/>
+  <!-- Cloud icon -->
+  <rect x="518" y="554" width="36" height="36" rx="10" fill="url(#cyanBtn)"/>
+  <path d="M527 576 Q527 571 531 570 Q532 565 537 565 Q542 565 543 570 Q547 570 548 574 Q552 575 551 578 L527 578 Z" fill="#fff"/>
+  <text x="564" y="567" font-family="Arial Black, Arial, sans-serif" font-size="13.5" font-weight="900" fill="#38d4f5">Hugging Face Spaces</text>
+  <text x="564" y="583" font-family="Arial, sans-serif" font-size="10" fill="#5a6a8a">Fully managed infrastructure</text>
+  <circle cx="520" cy="607" r="5" fill="#38d4f5"/>
+  <text x="532" y="611" font-family="Arial, sans-serif" font-size="10.5" fill="#e8eef8">Builds Docker image from source code</text>
+  <circle cx="520" cy="630" r="5" fill="#38d4f5"/>
+  <text x="532" y="634" font-family="Arial, sans-serif" font-size="10.5" fill="#e8eef8">Runs Gradio on HF-managed infrastructure</text>
+  <circle cx="520" cy="653" r="5" fill="#38d4f5"/>
+  <text x="532" y="657" font-family="Arial, sans-serif" font-size="10.5" fill="#e8eef8">No Kubernetes, no ops overhead</text>
+  <!-- Globe URL chip -->
+  <rect x="516" y="668" width="272" height="28" rx="8" fill="#38d4f518" stroke="#38d4f560" stroke-width="1.5"/>
+  <circle cx="530" cy="682" r="7" fill="none" stroke="#38d4f5" stroke-width="1.5"/>
+  <line x1="523" y1="682" x2="537" y2="682" stroke="#38d4f5" stroke-width="1.2"/>
+  <path d="M527 675 Q530 679 530 682 Q530 685 527 689" fill="none" stroke="#38d4f5" stroke-width="1.2"/>
+  <text x="652" y="686" font-family="Arial Black, Arial, sans-serif" font-size="9" fill="#38d4f5" text-anchor="middle" font-weight="900">huggingface.co/spaces/macolulu/demo</text>
+
+  <!-- ===== TABLE ===== -->
+  <text x="36" y="760" font-family="Arial Black, Arial, sans-serif" font-size="10" font-weight="900" fill="#3d5070" letter-spacing="2.5">KEY DIFFERENCES</text>
+  <line x1="210" y1="756" x2="924" y2="756" stroke="#1e3a5a" stroke-width="1.2"/>
+
+  <rect x="36" y="768" width="888" height="32" fill="#111e38"/>
+  <text x="48" y="788" font-family="Arial Black, Arial, sans-serif" font-size="10.5" font-weight="900" fill="#3d5070">DIMENSION</text>
+  <text x="244" y="788" font-family="Arial Black, Arial, sans-serif" font-size="10.5" font-weight="900" fill="#ff6b6b">Local Kubernetes</text>
+  <text x="590" y="788" font-family="Arial Black, Arial, sans-serif" font-size="10.5" font-weight="900" fill="#38d4f5">HuggingFace Spaces</text>
+  <line x1="36" y1="800" x2="924" y2="800" stroke="#1e3a5a" stroke-width="2"/>
+
+  <rect x="36" y="800" width="888" height="30" fill="#0a1628"/>
+  <text x="48" y="819" font-family="Arial Black, Arial, sans-serif" font-size="9" fill="#3d5070" font-weight="900">IMAGE SOURCE</text>
+  <text x="244" y="819" font-family="Arial, sans-serif" font-size="10.5" fill="#e8eef8">Your GHCR image (ghcr.io/...)</text>
+  <text x="590" y="819" font-family="Arial, sans-serif" font-size="10.5" fill="#e8eef8">HF builds fresh from source</text>
+  <line x1="36" y1="830" x2="924" y2="830" stroke="#1e3a5a" stroke-width="1"/>
+
+  <rect x="36" y="830" width="888" height="30" fill="#111e38"/>
+  <text x="48" y="849" font-family="Arial Black, Arial, sans-serif" font-size="9" fill="#3d5070" font-weight="900">ACCESS</text>
+  <text x="244" y="849" font-family="Arial, sans-serif" font-size="10.5" fill="#e8eef8">hf-demo.local  -  your Mac only</text>
+  <text x="590" y="849" font-family="Arial, sans-serif" font-size="10.5" fill="#e8eef8">Public URL  -  anyone, anywhere</text>
+  <line x1="36" y1="860" x2="924" y2="860" stroke="#1e3a5a" stroke-width="1"/>
+
+  <rect x="36" y="860" width="888" height="30" fill="#0a1628"/>
+  <text x="48" y="879" font-family="Arial Black, Arial, sans-serif" font-size="9" fill="#3d5070" font-weight="900">OPS BURDEN</text>
+  <text x="244" y="879" font-family="Arial, sans-serif" font-size="10.5" fill="#e8eef8">You manage cluster, ingress, RBAC</text>
+  <text x="590" y="879" font-family="Arial, sans-serif" font-size="10.5" fill="#e8eef8">Zero  -  fully managed by HF</text>
+  <line x1="36" y1="890" x2="924" y2="890" stroke="#1e3a5a" stroke-width="1"/>
+
+  <rect x="36" y="890" width="888" height="30" fill="#111e38"/>
+  <text x="48" y="909" font-family="Arial Black, Arial, sans-serif" font-size="9" fill="#3d5070" font-weight="900">PURPOSE</text>
+  <text x="244" y="909" font-family="Arial, sans-serif" font-size="10.5" fill="#e8eef8">Private dev / staging / RBAC testing</text>
+  <text x="590" y="909" font-family="Arial, sans-serif" font-size="10.5" fill="#e8eef8">Public demo, stakeholder sharing</text>
+
+  <line x1="230" y1="768" x2="230" y2="920" stroke="#1e3a5a" stroke-width="1"/>
+  <line x1="576" y1="768" x2="576" y2="920" stroke="#1e3a5a" stroke-width="1"/>
+  <rect x="36" y="768" width="888" height="152" fill="none" stroke="#1e3a5a" stroke-width="1.2"/>
+
+  <!-- ===== SECURITY ===== -->
+  <text x="36" y="952" font-family="Arial Black, Arial, sans-serif" font-size="10" font-weight="900" fill="#3d5070" letter-spacing="2.5">SECURITY HARDENING</text>
+  <line x1="222" y1="948" x2="924" y2="948" stroke="#1e3a5a" stroke-width="1.2"/>
+
+  <!-- Container card -->
+  <rect x="36" y="960" width="278" height="48" rx="10" fill="#111e38" stroke="#1e3a5a" stroke-width="1.2"/>
+  <rect x="48" y="970" width="30" height="30" rx="8" fill="#b57bff25"/>
+  <rect x="53" y="976" width="20" height="16" rx="3" fill="none" stroke="#b57bff" stroke-width="1.8"/>
+  <line x1="53" y1="982" x2="73" y2="982" stroke="#b57bff" stroke-width="1.5"/>
+  <line x1="63" y1="976" x2="63" y2="992" stroke="#b57bff" stroke-width="1.5"/>
+  <text x="86" y="978" font-family="Arial Black, Arial, sans-serif" font-size="9.5" font-weight="900" fill="#b57bff">CONTAINER</text>
+  <text x="86" y="994" font-family="Arial, sans-serif" font-size="9" fill="#e8eef8">Non-root UID  ·  Read-only FS  ·  Caps dropped</text>
+
+  <!-- RBAC card -->
+  <rect x="326" y="960" width="278" height="48" rx="10" fill="#111e38" stroke="#1e3a5a" stroke-width="1.2"/>
+  <rect x="338" y="970" width="30" height="30" rx="8" fill="#b57bff25"/>
+  <circle cx="349" cy="982" r="6" fill="none" stroke="#b57bff" stroke-width="1.8"/>
+  <line x1="355" y1="982" x2="363" y2="982" stroke="#b57bff" stroke-width="2"/>
+  <line x1="360" y1="982" x2="360" y2="986" stroke="#b57bff" stroke-width="2"/>
+  <text x="376" y="978" font-family="Arial Black, Arial, sans-serif" font-size="9.5" font-weight="900" fill="#b57bff">KUBERNETES RBAC</text>
+  <text x="376" y="994" font-family="Arial, sans-serif" font-size="9" fill="#e8eef8">ServiceAccount  ·  No ambient token  ·  Scoped</text>
+
+  <!-- Trivy card -->
+  <rect x="616" y="960" width="308" height="48" rx="10" fill="#111e38" stroke="#1e3a5a" stroke-width="1.2"/>
+  <rect x="628" y="970" width="30" height="30" rx="8" fill="#b57bff25"/>
+  <rect x="633" y="976" width="20" height="17" rx="3" fill="none" stroke="#b57bff" stroke-width="1.8"/>
+  <line x1="633" y1="983" x2="653" y2="983" stroke="#b57bff" stroke-width="1.8"/>
+  <circle cx="643" cy="980" r="2.5" fill="#b57bff"/>
+  <text x="666" y="978" font-family="Arial Black, Arial, sans-serif" font-size="9.5" font-weight="900" fill="#b57bff">TRIVY CI SCAN</text>
+  <text x="666" y="994" font-family="Arial, sans-serif" font-size="9" fill="#e8eef8">CRITICAL/HIGH CVEs  ·  GitHub Security tab</text>
+
+</svg>

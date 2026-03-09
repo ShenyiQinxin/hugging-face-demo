@@ -4,7 +4,7 @@ metadata:
   name: hugging-face-demo
   namespace: hf-demo
   annotations:
-    nginx.ingress.kubernetes.io/proxy-body-size: "0"
+    traefik.ingress.kubernetes.io/router.middlewares: hf-demo-rewrite-host-for-gradio@kubernetescrd
 spec:
   ingressClassName: traefik         
   rules:

@@ -146,7 +146,7 @@ jobs:
   deploy-selfhosted:
     if: ${{ needs.build.result == 'success' && needs.scan.result == 'success' }}
     needs: [build, scan] # deploy only if build AND scan passed
-    runs-on: [self-hosted, macOS, X64, local-k8s]   #  you set on your runner
+    runs-on: [self-hosted, macOS, ARM64]
     environment: dev
     timeout-minutes: 10
     permissions:

@@ -277,6 +277,50 @@ trivy image --severity CRITICAL,HIGH --ignore-unfixed \
 
 ---
 
+## 🛡️ Security Architecture
+
+This project applies defense-in-depth across three layers: CI/CD, container runtime, and Kubernetes.
+
+### Layer 1 — CI/CD: Trivy Image Scan
+
+```
+build → scan → deploy-selfhosted
+```
+
+| Control | Detail |
+|---------|--------|
+| Scan target | Immutable image digest (`image@sha256:…`) — not a mutable tag |
+| Scope | `CRITICAL` and `HIGH` CVEs with available fixes only |
+| Gate | CI fails if fixable CVEs are found (report-only mode for this prototype) |
+| Visibility | SARIF results uploaded to **GitHub Security tab** on every run |
+
+### Layer 2 — Container Runtime: Non-Root + Read-Only Filesystem
+
+Set in `Dockerfile` and enforced in `k8s/deployment.yaml`:
+
+| Control | Setting |
+|---------|---------|
+| Non-root user | `runAsUser: 10001`, `runAsNonRoot: true` |
+| Immutable filesystem | `readOnlyRootFilesystem: true` |
+| Privilege escalation blocked | `allowPrivilegeEscalation: false` |
+| Linux capabilities | `capabilities.drop: [ALL]` |
+| Seccomp | `seccompProfile: RuntimeDefault` |
+| Writable scratch dirs | `/tmp` and `/home/app/.cache/huggingface` as `emptyDir` volumes |
+
+### Layer 3 — Kubernetes RBAC: Least Privilege
+
+Defined in `k8s/rbac.yaml`:
+
+| Control | Detail |
+|---------|--------|
+| Dedicated ServiceAccount | `hf-demo` SA — not the `default` SA |
+| No ambient API token | `automountServiceAccountToken: false` on both SA and pod |
+| Secret access | `get` on `hf-token` only (HuggingFace API key) |
+| ConfigMap access | `get` on `hf-demo-config` only (model config) |
+| Scope | Namespace-scoped `Role` + `RoleBinding` — no `ClusterRole` |
+
+---
+
 ## 💜 Git Issues
 ```
 git rm --cached path/to/file
